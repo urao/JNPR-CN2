@@ -91,7 +91,7 @@ contrail-k8s-controller-7777877b44-c4zwb   1/1     Running   0          30h
 NAME                                     READY   STATUS    RESTARTS   AGE
 contrail-k8s-deployer-858bb45dd7-gxpcz   1/1     Running   0          30h
 ```
-19. Login into master node and check status of the nodes
+19. Check status of the nodes
 ```
 sudo kubectl get nodes
 ```
