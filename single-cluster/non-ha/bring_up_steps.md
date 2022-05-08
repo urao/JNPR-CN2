@@ -102,3 +102,8 @@ node1   Ready    control-plane,master   30h   v1.23.5
 node2   Ready    <none>                 30h   v1.23.5
 ```
 20. Deployment FINISHED...
+
+
+
+## Reference
+[CN2](https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/release-notes/22.1/cn-cloud-native-release-notes-22.1/topics/concept/cn-cloud-native-22.1-supported-platforms.html)
