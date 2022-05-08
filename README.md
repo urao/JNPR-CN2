@@ -1,2 +1,2 @@
 # jnpr-cn2
-Juniper CN2 CNI
+Different modes of deploying Juniper CN2 CNI in Kubernetes environment
