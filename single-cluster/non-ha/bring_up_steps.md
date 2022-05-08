@@ -65,7 +65,7 @@ node2   NotReady    <none>                 30h   v1.23.5
 tar -zxvf contrail-manifests-k8s-22.1.0.93.tgz
 cd $HOME/contrail-manifests-k8s/single_cluster/
 ```
-15. Modify deployer.yaml to change replicaset, gateway etc.. [sample one](https://github.com/urao/jnpr-cn2/blob/main/single-cluster/non-ha/deployer.yaml) 
+15. For non-DPDK mode deployment, modify deployer.yaml to change replicaset, gateway ip address 
 16. Login to hub.juniper.net to download the CN2 images
 ```
 docker login hub.juniper.net --username <USERNAME> --password <PASSWORD>
