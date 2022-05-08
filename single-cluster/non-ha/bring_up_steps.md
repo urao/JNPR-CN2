@@ -37,12 +37,12 @@ cp -rfp inventory/sample inventory/mycluster
 cd inventory/mycluster
 cp inventory.ini hosts.ini
 ```
-7. Modify hosts.ini to add Hostname and IP address of master and worker node, [sample one]()
+7. Modify hosts.ini to add Hostname and IP address of master and worker node, [sample one](https://github.com/urao/jnpr-cn2/blob/main/single-cluster/non-ha/hosts.ini)
 8. Validate all the hosts are reachable
 ```
 /usr/local/bin/ansible -i hosts.ini -m ping all
 ```
-9. Modify k8s-cluster.yml to add kubernetes version, CNI, PD, Service CIDR address etc.. [sample one]()
+9. Modify k8s-cluster.yml to add kubernetes version, CNI, PD, Service CIDR address etc.. [sample one](https://github.com/urao/jnpr-cn2/blob/main/single-cluster/non-ha/k8s-cluster.yml)
 10. Deploy Kubernetes
 ```
 cd $HOME/kubespray
@@ -65,7 +65,7 @@ node2   NotReady    <none>                 30h   v1.23.5
 tar -zxvf contrail-manifests-k8s-22.1.0.93.tgz
 cd $HOME/contrail-manifests-k8s/single_cluster/
 ```
-15. Modify deployer.yaml to change replicaset, gateway etc.. [sample one]() 
+15. Modify deployer.yaml to change replicaset, gateway etc.. [sample one](https://github.com/urao/jnpr-cn2/blob/main/single-cluster/non-ha/deployer.yaml) 
 16. Login to hub.juniper.net to download the CN2 images
 ```
 docker login hub.juniper.net --username <USERNAME> --password <PASSWORD>
