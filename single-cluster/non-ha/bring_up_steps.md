@@ -1,5 +1,5 @@
 
-## Steps to Deploy Kubernetes v1.23.5 + Juniper CN2 CNI 
+## Steps to Deploy Kubernetes v1.23.5 + Juniper CN2 CNI on VMM
 
 1. Bring up 3 Centos 7.6 (1810) Servers or Virtual Machines, 1 deployer node, 1 master node and 1 worker node
 2. Upgrade kernel version to the one supported by CN2 on master and worker node
