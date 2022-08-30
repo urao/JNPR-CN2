@@ -1,0 +1,143 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns1-hs
+  labels:
+    ns: ns1-hs
+spec:
+  finalizers:
+  - kubernetes
+---
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: Subnet
+metadata:
+  namespace: ns1-hs
+  name: subnet1-ns1-spoke
+  annotations:
+    core.juniper.net/display-name: Subnet1MMesh
+    core.juniper.net/description: Subnet represents a block of IP addresses and its configuration.
+spec:
+  cidr: "172.168.150.0/24"
+  defaultGateway: "172.168.150.254"
+---
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: Subnet
+metadata:
+  namespace: ns1-hs
+  name: subnet2-ns1-spoke
+  annotations:
+    core.juniper.net/display-name: Subnet2MMesh
+    core.juniper.net/description: Subnet represents a block of IP addresses and its configuration.
+spec:
+  cidr: "172.168.160.0/24"
+  defaultGateway: "172.168.160.254"
+---
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: Subnet
+metadata:
+  namespace: ns1-hs
+  name: subnet3-ns1-hub
+  annotations:
+    core.juniper.net/display-name: Subnet2MMesh
+    core.juniper.net/description: Subnet represents a block of IP addresses and its configuration.
+spec:
+  cidr: "172.168.170.0/24"
+  defaultGateway: "172.168.170.254"
+---
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: VirtualNetwork
+metadata:
+  namespace: ns1-hs
+  name: vn1-ns1-hs
+  annotations:
+    core.juniper.net/display-name: VN1-mmesh
+    core.juniper.net/description: VirtualNetwork represents.
+  labels:
+    vn: spoke
+spec:
+  v4SubnetReference:
+    apiVersion: core.contrail.juniper.net/v1alpha1
+    kind: Subnet
+    namespace: ns1-hs
+    name: subnet1-ns1-spoke
+---
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: VirtualNetwork
+metadata:
+  namespace: ns1-hs
+  name: vn2-ns1-hs
+  annotations:
+    core.juniper.net/display-name: VN2-mmesh
+    core.juniper.net/description: VirtualNetwork represents.
+  labels:
+    vn: spoke
+spec:
+  v4SubnetReference:
+    apiVersion: core.contrail.juniper.net/v1alpha1
+    kind: Subnet
+    namespace: ns1-hs
+    name: subnet2-ns1-spoke
+---
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: VirtualNetwork
+metadata:
+  namespace: ns1-hs
+  name: vn3-ns1-hs
+  annotations:
+    core.juniper.net/display-name: VN3-mmesh
+    core.juniper.net/description: VirtualNetwork represents.
+  labels:
+    vn: hub
+spec:
+  v4SubnetReference:
+    apiVersion: core.contrail.juniper.net/v1alpha1
+    kind: Subnet
+    namespace: ns1-hs
+    name: subnet3-ns1-hub
+---
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: VirtualNetworkRouter
+metadata:
+  namespace: ns1-hs
+  name: ns1-hub-vnr
+  annotations:
+    core.juniper.net/display-name: ns1-hub-vnr
+  labels:
+      vnr: hub
+spec:
+  type: hub
+  virtualNetworkSelector:
+    matchLabels:
+      vn: hub
+  import:
+    virtualNetworkRouters:
+      - virtualNetworkRouterSelector:
+          matchLabels:
+            vnr: spoke
+        namespaceSelector:
+          matchLabels:
+            ns: ns1-hs
+---
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: VirtualNetworkRouter
+metadata:
+  namespace: ns1-hs
+  name: ns1-spoke-vnr
+  annotations:
+    core.juniper.net/display-name: ns1-spoke-vnr
+  labels:
+      vnr: spoke
+spec:
+  type: spoke
+  virtualNetworkSelector:
+    matchLabels:
+      vn: spoke
+  import:
+    virtualNetworkRouters:
+      - virtualNetworkRouterSelector:
+          matchLabels:
+            vnr: hub
+        namespaceSelector:
+          matchLabels:
+            ns: ns1-hs

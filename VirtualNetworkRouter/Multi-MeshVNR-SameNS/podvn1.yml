@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mtestvn1pod1
+  namespace: same-ns-mmesh
+  annotations:
+    k8s.v1.cni.cncf.io/networks: vn1-mmesh
+spec:
+  containers:
+    - name: mtestvn1pod1
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: ["bash", "-c","while true; do sleep 60s; done"]
+      securityContext:
+        privileged: true
+        capabilities:
+          add:
+            - NET_ADMIN
