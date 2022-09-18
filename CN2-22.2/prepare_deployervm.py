@@ -1,9 +1,9 @@
 #!/usr/bin/python
-# -------------------------------------------------
+# --------------------------------------------------------------
 # This python script will install required packages
-# on the deployer VM to install CN2 cluster
-# Tested for CN2 22.2 software version
-# -------------------------------------------------
+# on the deployer VM to install K8s and CN2 CNI
+# Tested for CN2 22.2 software version with K8s version v1.23.7
+# ---------------------------------------------------------------
 import os, sys, logging, getpass, time
 import argparse
 import paramiko
