@@ -1,0 +1,50 @@
+---
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: livecirrosvm
+  namespace: cirrosvm
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/size: small
+        kubevirt.io/domain: livecirrosvm
+        vm.kubevirt.io/name: livecirrosvm
+    spec:
+      domain:
+        cpu:
+          cores: ""
+          sockets: ""
+          threads: ""
+        devices:
+          disks:
+            - name: containerdisk
+              disk:
+                bus: virtio
+            - name: cloudinitdisk
+              disk:
+                bus: virtio
+          interfaces:
+            - bridge: {}
+              name: nic0
+        machine:
+          type: ""
+        resources:
+          requests:
+            memory: 64M
+      networks:
+        - name: nic0
+          multus:
+            networkName: cirros-nad
+      terminationGracePeriodSeconds: 30
+      evictionStrategy: LiveMigrate
+      volumes:
+        - name: containerdisk
+          containerDisk:
+            image: quay.io/kubevirt/cirros-container-disk-demo
+            imagePullPolicy: IfNotPresent
+        - name: cloudinitdisk
+          cloudInitNoCloud:
+            userDataBase64: SGkuXG4=

@@ -1,0 +1,15 @@
+---
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: VirtualNetworkRouter
+metadata:
+  namespace: cirrosvm
+  name: red-blue-vn-vnr
+  annotations:
+    core.juniper.net/display-name: red-blue-vn-vnr
+  labels:
+      vnr: red-blue-vn-vnr
+spec:
+  type: mesh
+  virtualNetworkSelector:
+    matchLabels:
+      vn: red-blue-vn

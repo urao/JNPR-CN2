@@ -1,0 +1,53 @@
+---
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: centos-vm-2
+  namespace: centosvm
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/size: medium
+        kubevirt.io/domain: centos-vm-2
+    spec:
+      domain:
+        devices:
+          disks:
+            - name: containerdisk
+              disk:
+                bus: virtio
+            - name: cloudinitdisk
+              disk:
+                bus: virtio
+          interfaces:
+            - bridge: {}
+              name: default
+            - bridge: {}
+              name: nic0
+        machine:
+          type: ""
+        resources:
+          requests:
+            memory: 1024M
+      networks:
+        - name: default
+          pod: {}
+        - name: nic0
+          multus:
+            networkName: blue-vn
+      terminationGracePeriodSeconds: 30
+      evictionStrategy: LiveMigrate
+      volumes:
+        - name: containerdisk
+          containerDisk:
+            #image: quay.io/kubevirt/cirros-container-disk-demo
+            image: svl-artifactory.juniper.net/atom-docker-remote/ovaleanu/centos:latest
+        - name: cloudinitdisk
+          cloudInitNoCloud:
+            userData: |-
+              #cloud-config
+              password: centos
+              ssh_pwauth: True
+              chpasswd: { expire: False }
