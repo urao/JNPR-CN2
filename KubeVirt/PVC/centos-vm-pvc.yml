@@ -1,0 +1,38 @@
+---
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: centosvm-pvc
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: medium
+        kubevirt.io/domain: centosvm-pvc
+    spec:
+      domain:
+        cpu:
+          cores: 2
+        devices:
+          disks:
+            - disk:
+                bus: virtio
+              name: rootfs
+            - disk:
+                bus: virtio
+              name: cloudinit
+        resources:
+          requests:
+            memory: 1Gi
+      volumes:
+        - name: rootfs
+          persistentVolumeClaim:
+            claimName: centos-pvc
+        - name: cloudinit
+          cloudInitNoCloud:
+            userData: |-
+              #cloud-config
+              user: root
+              password: 'contrail123'
+              chpasswd: { expire: False }

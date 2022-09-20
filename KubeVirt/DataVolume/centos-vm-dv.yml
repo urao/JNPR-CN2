@@ -1,0 +1,28 @@
+---
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: centosvm-dv
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/vm: medium
+        kubevirt.io/domain: centosvm-dv
+    spec:
+      domain:
+        cpu:
+          cores: 2
+        devices:
+          disks:
+            - disk:
+                bus: virtio
+              name: rootfs
+        resources:
+          requests:
+            memory: 2Gi
+      volumes:
+        - dataVolume:
+            name: centos-dv
+          name: rootfs

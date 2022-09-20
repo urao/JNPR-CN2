@@ -1,0 +1,18 @@
+---
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: centos-dv
+spec:
+  source:
+    http:
+      url: "http://<WEB_SERVER_IP>/download/CentOS-7-x86_64-GenericCloud.qcow2"
+  pvc:
+    storageClassName: local-storage
+    volumeMode: Filesystem
+    volumeName: dv-pv0
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 15Gi
