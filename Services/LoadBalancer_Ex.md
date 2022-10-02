@@ -1,4 +1,4 @@
-# Service creation using service type ClusterIP
+## Service creation using service type LoadBalancer
 ```
 ---
 apiVersion: k8s.cni.cncf.io/v1
