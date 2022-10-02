@@ -41,8 +41,9 @@ kubectl create -f https://github.com/kubevirt/containerized-data-importer/releas
 
 
 ### References
-```
 https://kubevirt.io
+
 https://kubevirt.io/user-guide/operations/virtctl_client_tool/
+
 https://github.com/kubevirt/containerized-data-importer
-```
+
