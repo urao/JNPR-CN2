@@ -44,7 +44,8 @@ docker volume create crpd-logs
 12. By default cRPD listens on the port to allow netconf over ssh access. Once cRPD starts, it will try to bind port 22 but, sharing the same network stack of the host OS, it will find it already in use. As a result cRPD ssh daemon will fail. To avoid this, provide ssh on the different port for cRPD. You can do it by creating an alternative sshd_config file and mount into the container during creation.
 13. Run cRPD,
 ```
-docker run --rm --detach --name crpd1 -h crpd1 --net=host --privileged -v crpd-conf:/config -v crpd-logs:/var/log -it crpd:22.2R1.9
+docker run --rm --detach --name crpd1 -h crpd1 --net=host --privileged \
+       -v crpd-conf:/config -v crpd-logs:/var/log -it crpd:22.2R1.9
 ```
 14. Access CLI,
 ```
