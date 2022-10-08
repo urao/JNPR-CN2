@@ -1,5 +1,4 @@
-### Sample cRPD configuration of iBGP peering with
-### CN2 control node
+### Sample cRPD configuration of iBGP peering with CN2 control node
 
 ```
 set policy-options policy-statement lb then load-balance per-packet
