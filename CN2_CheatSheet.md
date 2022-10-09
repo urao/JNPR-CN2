@@ -24,3 +24,12 @@ virtualnetworks                  vn               core.contrail.juniper.net/v1al
 vrouters                                          dataplane.juniper.net/v1alpha1       true         Vrouter
 etcds                                             datastore.juniper.net/v1alpha1       true         Etcd
 ```
+
+# contrail-status
+```
+chmod +x contrail-tools/kubectl-contrailstatus
+cp contrail-tools/kubectl-contrailstatus /usr/local/bin/
+kubectl-contrailstatus
+kubectl-contrailstatus --all
+kubectl-contrailstatus resource bgprouter
+```
