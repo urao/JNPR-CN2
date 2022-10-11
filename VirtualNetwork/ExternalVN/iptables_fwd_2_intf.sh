@@ -11,7 +11,7 @@ iptables -F
 iptables -X
 
 echo 'Enabling forward and masquerading to all ens3f1 to ens3f0 interface for data traffic'
-iptables --tables nat --append POSTROUTING --out-interface $WANIF -j MASQUERADE
+iptables --table nat --append POSTROUTING --out-interface $WANIF -j MASQUERADE
 iptables --append FORWARD --in-interface $LANIF -j ACCEPT
 
 echo 'Done.'
