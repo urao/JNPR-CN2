@@ -25,9 +25,10 @@ cd inventory
 cp -rfp sample  cn2cluster
 ```
 
-4. Append k8s-cluster.yml with CN2 requirements for K8s install
+4. Append k8s-cluster.yml with [CN2 requirements](https://github.com/urao/JNPR-CN2/blob/main/CN2-22.2/CN2_requirements.md) for K8s install
+5. Create [hosts.ini](https://github.com/urao/JNPR-CN2/blob/main/CN2-22.2/hosts.ini) file with node information, IP address, ansible_user
 
-5. Run the deployment
+6. Run the deployment
 ```
 cd ../
 ansible -i inventory/cn2cluster/hosts.ini -m ping all
