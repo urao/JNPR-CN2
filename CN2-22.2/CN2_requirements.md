@@ -11,4 +11,6 @@ download_localhost: true
 download_container: false
 download_run_once: true
 kube_version: ${version}
+kube_network_plugin: cni
+kube_network_plugin_multus: false
 ```
