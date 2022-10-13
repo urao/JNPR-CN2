@@ -1,6 +1,6 @@
 ### Steps to install CN2 Analytics on existing CN2 Cluster on Ubuntu OS
 
-1. Install HELM 
+1. Install [HELM](https://helm.sh/) 
 ```
 sudo snap helm
 ```
@@ -20,3 +20,4 @@ kubectl get pods -n contrail-analytics
 
 ### References
 * https://www.juniper.net/documentation/us/en/software/cn-cloud-native22/cn-cloud-native-feature-guide/cn-cloud-native-network-feature/topics/concept/cn-cloud-native-analytics.html
+* https://helm.sh/
