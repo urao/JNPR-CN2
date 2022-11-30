@@ -1,9 +1,7 @@
 ### Helm CheatSheet
 
 ```
-
-
-
+helm list
 ```
 
 
