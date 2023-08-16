@@ -4,6 +4,14 @@
 1. Install [Helm](https://helm.sh)
 ```
 sudo snap helm
+wget https://get.helm.sh/helm-v3.9.3-linux-amd64.tar.gz
+tar xvf helm-v3.9.3-linux-amd64.tar.gz
+sudo mv linux-amd64/helm /usr/local/bin
+rm helm-v3.4.1-linux-amd64.tar.gz
+rm -rf linux-amd64
+```
+```
+helm version
 ```
 2. Requirement is to have a VIP address for the analytics deployment
 3. Download contrail analytics package from [Juniper support site](https://support.juniper.net/support/downloads/?p=contrail#sw)
